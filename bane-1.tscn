@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://coixf5h3oj7k5"]
+
+[ext_resource type="Texture2D" uid="uid://cwxwh2slvrogm" path="res://bane-1.png" id="1_3t8mr"]
+[ext_resource type="Script" path="res://race-manager.gd" id="1_yicfy"]
+[ext_resource type="PackedScene" uid="uid://ds7gg4oeostby" path="res://car.tscn" id="2_4crff"]
+[ext_resource type="AudioStream" uid="uid://6dakjs201pb3" path="res://Audio/confirm.ogg" id="4_0vev3"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_yicfy")
+car_node = ExtResource("2_4crff")
+start_x = 130
+start_y = 530
+car_amount = 7
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(960, 540)
+texture = ExtResource("1_3t8mr")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+visible = false
+position = Vector2(960, 540)
+polygon = PackedVector2Array(-535, -198, -254, -130, -25, 23, 220, 97, 399, 66, 557, 8, 693, -132, 649, 191, 469, 273, 358, 263, 252, 191, -94, 83, -193, 87, -555, 223, -646, 224, -686, -125)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D"]
+visible = false
+position = Vector2(960, 540)
+polygon = PackedVector2Array(-551, -414, -725, -363, -841, -280, -886, -106, -879, 221, -843, 320, -725, 426, -591, 443, -491, 433, -231, 322, -98, 322, -17, 358, 132, 408, 270, 466, 454, 476, 578, 463, 792, 345, 883, 189, 898, -207, 837, -310, 747, -366, 666, -366, 546, -282, 407, -149, 234, -112, 67, -169, -52, -256, -218, -337, -420, -373, -536, -415, -543, -542, 958, -539, 960, 539, -966, 542, -960, -541, -556, -539)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_0vev3")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

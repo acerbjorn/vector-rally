@@ -1,6 +1,7 @@
-[gd_scene load_steps=56 format=3 uid="uid://ds7gg4oeostby"]
+[gd_scene load_steps=57 format=3 uid="uid://ds7gg4oeostby"]
 
 [ext_resource type="Script" path="res://Car.gd" id="1_rblv3"]
+[ext_resource type="AudioStream" uid="uid://cay632qgf3stc" path="res://Audio/explosion.ogg" id="2_a88nb"]
 [ext_resource type="Texture2D" uid="uid://dtn4errf7phyx" path="res://Graphics/Cars/Player_blue (16 x 16).png" id="2_y3kke"]
 [ext_resource type="Texture2D" uid="uid://dpjf8dcw7n7o8" path="res://Graphics/Cars/NPC_cars (16 x 16).png" id="3_3y6el"]
 [ext_resource type="Texture2D" uid="uid://l3m8s61r2htc" path="res://Graphics/Cars/Player_green (16 x 16).png" id="4_gybie"]
@@ -310,7 +311,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dglo0"]
-size = Vector2(48, 32)
+size = Vector2(12, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l1kmi"]
 atlas = ExtResource("8_cdnvj")
@@ -382,22 +383,26 @@ animations = [{
 }]
 
 [node name="Car" type="CharacterBody2D"]
+scale = Vector2(4, 4)
 script = ExtResource("1_rblv3")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_a88nb")
 
 [node name="MovementVectorDrawing" type="Line2D" parent="."]
 z_index = -1
-scale = Vector2(10, 10)
 points = PackedVector2Array(0, 0, 0, 0)
 width = 1.0
 
 [node name="CarSprite" type="AnimatedSprite2D" parent="."]
-scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_qxbks")
 animation = &"green_car"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_dglo0")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(2, 2)
+[node name="ExplosionSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qcxs5")
+animation = &"explosion"
+frame = 7
+frame_progress = 1.0

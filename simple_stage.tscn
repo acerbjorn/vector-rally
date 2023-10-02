@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://d2ru382dybywq"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(181, 49, 57, 79, 45, 197, 217, 398, 219, 692, 89, 906, 90, 1002, 235, 1019, 454, 955, 640, 785, 1024, 777, 1416, 977, 1811, 994, 1816, 640, 1784, 333, 1542, 125, 1104, 98, 674, 64, 572, 291, 451, 283, 251, 49, 247, 4, 1927, 4, 1923, 1084, -2, 1076, 0, 26, 50, -1, 184, 1)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D2"]
+polygon = PackedVector2Array(233, 226, 355, 416, 355, 698, 298, 843, 519, 633, 1175, 608, 1582, 823, 1540, 410, 1220, 308, 872, 300, 742, 432, 397, 410)

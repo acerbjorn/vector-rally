@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://ds7gg4oeostby"]
+[gd_scene load_steps=56 format=3 uid="uid://ds7gg4oeostby"]
 
 [ext_resource type="Script" path="res://Car.gd" id="1_rblv3"]
 [ext_resource type="Texture2D" uid="uid://dtn4errf7phyx" path="res://Graphics/Cars/Player_blue (16 x 16).png" id="2_y3kke"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://807mcpm4dpg7" path="res://Graphics/Cars/Police (16 x 16).png" id="5_mgx1g"]
 [ext_resource type="Texture2D" uid="uid://b5vpo3h0lpflw" path="res://Graphics/Cars/Player_red (16 x 16).png" id="6_cwkxt"]
 [ext_resource type="Texture2D" uid="uid://d4f5r1hac0t5a" path="res://Graphics/Cars/Player_yellow (16 x 16).png" id="7_ws0na"]
+[ext_resource type="Texture2D" uid="uid://c055rxvotfcfk" path="res://Graphics/Effects/explosion-6.png" id="8_cdnvj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wc2bt"]
 atlas = ExtResource("2_y3kke")
@@ -309,7 +310,76 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dglo0"]
-size = Vector2(120, 80)
+size = Vector2(48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1kmi"]
+atlas = ExtResource("8_cdnvj")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6wur"]
+atlas = ExtResource("8_cdnvj")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yb0r2"]
+atlas = ExtResource("8_cdnvj")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwe82"]
+atlas = ExtResource("8_cdnvj")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8kfs4"]
+atlas = ExtResource("8_cdnvj")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0kh3p"]
+atlas = ExtResource("8_cdnvj")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y283m"]
+atlas = ExtResource("8_cdnvj")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ejme"]
+atlas = ExtResource("8_cdnvj")
+region = Rect2(336, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qcxs5"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1kmi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6wur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yb0r2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vwe82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8kfs4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0kh3p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y283m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ejme")
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 5.0
+}]
 
 [node name="Car" type="CharacterBody2D"]
 script = ExtResource("1_rblv3")
@@ -321,9 +391,13 @@ points = PackedVector2Array(0, 0, 0, 0)
 width = 1.0
 
 [node name="CarSprite" type="AnimatedSprite2D" parent="."]
-scale = Vector2(10, 10)
+scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_qxbks")
 animation = &"green_car"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_dglo0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_qcxs5")

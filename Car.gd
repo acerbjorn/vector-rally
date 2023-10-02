@@ -19,7 +19,11 @@ var car_types = [
 ]
 var velocity_vector: Vector2 = Vector2(0,0)
 var acceleration_vector: Vector2
+var start_position: Vector2 = Vector2(0,0)
+var target_position: Vector2 = Vector2(0,0)
 var is_active_car: bool = true
+var should_move: bool = false
+var interpolation_time: float = 0.0
 
  # These are used to set car facing
 var modified_angle
@@ -33,16 +37,22 @@ func _ready():
 	randomize_car_type()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _process(delta):
 	if is_active_car:
 		acceleration_vector = 5*Input.get_vector("move_left","move_right", "move_up","move_down")
 		vector_drawing.set_point_position(1, 4*acceleration_vector)
 		# set_car_facing(acceleration_vector.angle()+PI)
-		
+	if should_move:
+		interpolation_time += 3 * delta
+		car.position = start_position.lerp(target_position, interpolation_time)
+		if interpolation_time >= 1.0:
+			interpolation_time = 0
+			should_move = false
 
 func _input(event):
-	if event.is_action_pressed('accept'):
-		add_acceleration_and_move_car()
+	if is_active_car:
+		if event.is_action_pressed('accept'):
+			add_acceleration_and_move_car()
 		
 	
 func set_car_facing(angle):
@@ -62,6 +72,11 @@ func randomize_car_type():
 
 func add_acceleration_and_move_car():
 	velocity_vector += acceleration_vector
-	car.position += velocity_vector
+	start_position = car.position
+	target_position = start_position + velocity_vector
+	should_move = true
 	set_car_facing(velocity_vector.angle()+PI)
 	
+func blow_up_car():
+	# Show an explosion sprite and remove the car.
+	pass
